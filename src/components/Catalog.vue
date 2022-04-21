@@ -22,10 +22,8 @@ export default {
   name: 'Catalog',
   components: {ComicCard},
 
-  computed: {
-    ...mapState('comics', {
-      comics: 'comics'
-    })
+  props: {
+    comics: Array
   }
 }
 </script>
