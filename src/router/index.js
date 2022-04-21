@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ComicsHome from '../views/ComicsHome.vue'
+import CharactersList from "../views/CharactersList";
 
 Vue.use(VueRouter)
 
@@ -9,6 +10,11 @@ const routes = [
     path: '/',
     name: 'ComicsHome',
     component: ComicsHome
+  },
+  {
+    path: '/characters',
+    name: 'CharactersList',
+    component: CharactersList
   },
   {
     path: '/comic/:id',

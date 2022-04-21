@@ -20,7 +20,7 @@ export default {
 
   computed: {
     thumbnail() {
-      return this.comic.images[0] ? `${this.comic.images[0].path}.${this.comic.images[0].extension}` : `${this.comic.thumbnail.path}.${this.comic.thumbnail.extension}`
+      return this.comic.images ? `${this.comic.images[0].path}.${this.comic.images[0].extension}` : `${this.comic.thumbnail.path}.${this.comic.thumbnail.extension}`
     }
   }
 }
