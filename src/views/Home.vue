@@ -6,21 +6,25 @@
   >
     <SearchBar />
     <Catalog :comics="search ? getComicsBySearch(search) : comics" />
-    <div v-if="isFetchingData" class="d-flex justify-content-center my-5">
+
+    <div
+      v-if="isFetchingData"
+      class="d-flex justify-content-center my-5"
+    >
       <div
-          v-for="i in 3"
-          :key="i"
+        v-for="i in 3"
+        :key="i"
+        class="spinner-grow text-danger mx-2"
+        role="status"
       >
-        <div class="spinner-grow text-danger mx-2" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
+        <span class="visually-hidden">Loading...</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapGetters, mapState} from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 import Catalog from '@/components/Catalog.vue'
 import SearchBar from '@/components/SearchBar.vue'

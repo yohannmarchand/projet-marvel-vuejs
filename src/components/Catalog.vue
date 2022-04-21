@@ -1,12 +1,13 @@
 <template>
-  <div class="container">
+  <div>
     <div
-        v-if="comics"
-        class="row"
+      v-if="comics"
+      class="row"
     >
       <div
-        class="card col-3 m-2" v-for="comic in comics"
+        v-for="comic in comics"
         :key="comic.id"
+        class="card col-3 m-2"
       >
         <ComicCard :comic="comic" />
       </div>
@@ -20,7 +21,7 @@ import ComicCard from "./ComicCard";
 
 export default {
   name: 'Catalog',
-  components: {ComicCard},
+  components: { ComicCard },
 
   props: {
     comics: Array
