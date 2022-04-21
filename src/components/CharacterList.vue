@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <div
-        v-if="comics"
+        v-if="characters"
         class="row"
     >
       <div
-        class="col-3 m-2" v-for="comic in comics"
-        :key="comic.id"
+          class="col-3 m-2" v-for="character in characters"
+          :key="character.id"
       >
-        <Card :comic="comic" />
+        <Card :character="character" />
       </div>
     </div>
   </div>
@@ -22,10 +22,10 @@ export default {
   components: {Card},
 
   props: {
-    comics: Array,
+    characters: Array,
   }
 
-  
+
 }
 </script>
 

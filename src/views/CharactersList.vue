@@ -5,7 +5,7 @@
       infinite-scroll-distance="200"
   >
     <SearchBar />
-    <Catalog :comics="search ? getComicsBySearch : characters" />
+    <CharacterList :characters="search ? getComicsBySearch : characters" />
     <div v-if="isFetchingData" class="d-flex justify-content-center my-5">
       <div
           v-for="i in 3"
@@ -22,14 +22,14 @@
 <script>
 import { $api } from "../plugin/axios";
 
-import Catalog from '@/components/Catalog.vue'
+import CharacterList from '@/components/CharacterList.vue'
 import SearchBar from '@/components/SearchBar.vue'
 
 export default {
   name: "CharactersList",
 
   components: {
-    Catalog,
+    CharacterList,
     SearchBar
   },
 
