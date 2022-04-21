@@ -25,7 +25,7 @@ export default {
     },
 
     thumbnail() {
-      return this.resource.images ? `${this.resource.images[0].path}.${this.resource.images[0].extension}` : `${this.resource.thumbnail.path}.${this.resource.thumbnail.extension}`
+      return this.resource.images?.length ? `${this.resource.images[0].path}.${this.resource.images[0].extension}` : `${this.resource.thumbnail.path}.${this.resource.thumbnail.extension}`
     }
   }
 }
