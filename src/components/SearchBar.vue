@@ -1,17 +1,33 @@
 <template>
   <div class="d-flex">
-    <input class="form-control" type="text" placeholder="Recherche...">
-    <button class="btn btn-success">Rechercher</button>
+    <input
+        class="form-control"
+        type="text" placeholder="Recherche..."
+        v-model="value"
+    >
+    <button
+        class="btn btn-success"
+        @click="setValue"
+    >
+      Rechercher
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'SearchBar',
+
+  data() {
+    return {
+      value: this.$route.query.q
+    }
+  },
+
+  methods: {
+    setValue() {
+      this.$router.push({ query: { q: this.value} })
+    }
+  }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
