@@ -9,7 +9,9 @@ export default {
   }),
 
   getters: {
-
+    GET_COMICS_BY_SEARCH: (state) => (value) => {
+      return state.comics.filter(comic => comic.title.toLowerCase().includes(value.toLowerCase()))
+    }
   },
 
   mutations: {
@@ -19,7 +21,7 @@ export default {
   },
 
   actions: {
-    FETCH_COMICS(state) {
+    FETCH_COMICS() {
       $api.get('/comics').then(({ data }) => {
         store.commit('comics/SET_COMICS', data.data.results)
       })
