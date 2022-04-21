@@ -26,8 +26,8 @@
 <script>
 import { mapGetters, mapState } from "vuex";
 
-import Catalog from '@/components/Catalog.vue'
-import SearchBar from '@/components/SearchBar.vue'
+import Catalog from '../components/Catalog'
+import SearchBar from '../components/SearchBar'
 
 export default {
   name: 'Home',
