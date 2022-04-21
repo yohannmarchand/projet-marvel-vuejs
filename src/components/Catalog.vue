@@ -1,43 +1,42 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="card col-3" v-for="(hero, index) in heros" :key="index">
-        {{hero.name}}
+    <div
+        v-if="comics"
+        class="row"
+    >
+      <div
+        class="card col-3" v-for="comic in comics"
+        :key="comic.id"
+      >
+        {{ comic.title }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: 'Catalog',
-  props: {
-  },
+
   data() {
     return({
       heros: [
-        {
-          name: "Thor"
-        },
-        {
-          name: "Iron Man"
-        },
-        {
-          name: "Hulk"
-        },
-        {
-          name: "Lucas"
-        },
-        {
-          name: "Yohann"
-        }
+        { name: "Thor" },
+        { name: "Iron Man" },
+        { name: "Hulk" },
+        { name: "Lucas" },
+        { name: "Yohann" }
       ]
+    })
+  },
+
+  computed: {
+    ...mapState('comics', {
+      comics: 'comics'
     })
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
