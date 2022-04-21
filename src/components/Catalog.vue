@@ -25,6 +25,8 @@ export default {
   props: {
     comics: Array
   }
+
+  
 }
 </script>
 
