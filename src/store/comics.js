@@ -6,6 +6,7 @@ export default {
 
   state: () => ({
     comics: [],
+    detail: {},
     pagination: 0,
     limit: 20,
   }),
@@ -23,6 +24,10 @@ export default {
 
     SET_PAGINATION(state, pagination) {
       state.pagination = pagination
+    },
+
+    GET_DETAIL(state, detail) {
+      state.detail = detail;
     }
   },
 
@@ -38,6 +43,13 @@ export default {
       $api.get(`/comics?offset=${state.pagination * state.limit}`).then(({ data }) => {
         store.commit('comics/SET_PAGINATION', data.data.count / data.data.limit)
         store.commit('comics/ADD_COMICS', data.data.results)
+      })
+    },
+
+    FETCH_COMIC_DETAIL({ state }, payload) {
+      $api.get(`/comics/${payload}`).then(({ data }) => {
+
+        store.commit('comics/GET_DETAIL', data.data.results[0])
       })
     }
   },

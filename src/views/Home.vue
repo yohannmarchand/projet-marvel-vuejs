@@ -6,7 +6,8 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import { mapState } from "vuex";
+
 import Catalog from '@/components/Catalog.vue'
 import SearchBar from '@/components/SearchBar.vue'
 
@@ -18,8 +19,16 @@ export default {
     SearchBar
   },
 
+  computed: {
+    ...mapState('comics', {
+      comics: 'comics'
+    })
+  },
+
   created() {
-    this.$store.dispatch('comics/FETCH_COMICS')
+    if(this.comics.length == 0) {
+      this.$store.dispatch('comics/FETCH_COMICS')
+    }
   }
 }
 </script>
