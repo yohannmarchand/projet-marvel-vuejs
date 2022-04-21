@@ -21,6 +21,7 @@ import ComicCard from "./ComicCard";
 export default {
   name: 'Catalog',
   components: {ComicCard},
+
   computed: {
     ...mapState('comics', {
       comics: 'comics'

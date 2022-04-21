@@ -11,7 +11,8 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import { mapState } from "vuex";
+
 import Catalog from '@/components/Catalog.vue'
 import SearchBar from '@/components/SearchBar.vue'
 
