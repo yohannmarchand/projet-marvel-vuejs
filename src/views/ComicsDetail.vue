@@ -12,7 +12,7 @@
     <div class="container">
       <div class="row">
         <div class="col-3" v-for="character in characters" :key="character.name">
-          <RouterLink :to="`/comic/${comic.id}`">
+          <RouterLink :to="`/character/${character.id}`">
 		      <img
         		class="img-thumbnail img-fluid"
         		:src="characterThumbnail(character)"
