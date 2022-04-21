@@ -8,7 +8,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-import {mapGetters, mapState} from "vuex";
+import {mapState} from "vuex";
 
 export default {
   name: 'Home',
@@ -17,21 +17,15 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('comics/FETCH_COMICS')
+    this.$store.dispatch('comics/FETCH_COMICS').then(() => {
+      this.$store.dispatch('comics/FETCH_NEXT_PAGE')
+    })
   },
 
   computed: {
     ...mapState('comics', {
       comics: 'comics'
     }),
-
-    ...mapGetters("comics", {
-      getComicsBySearch: 'GET_COMICS_BY_SEARCH'
-    }),
-
-    test() {
-      return this.getComicsBySearch('Ant-Man')
-    }
   }
 }
 </script>
