@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import ComicCard from "./ComicCard";
 
 export default {

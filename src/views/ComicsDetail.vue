@@ -3,43 +3,58 @@
     <h1 class="text-center">{{comic.title}}</h1>
     <img
       class="img-thumbnail img-fluid w-25"
-      :src="thumbnail"
+      :src="comicThumbnail"
       :alt="comic.title"
     >
     <small>Couverture de <b>{{comic.title}}</b></small>
 
     <ul>
-      <li v-for="character in comic.characters" :key="character.name">
+      <li v-for="character in characters" :key="character.name">
         {{character.name}}
+		<img
+      		class="img-thumbnail img-fluid w-25"
+      		:src="characterThumbnail(character)"
+      		:alt="character.name"
+    	>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { $api } from "../plugin/axios";
 
 export default {
   name: 'ComicsDetail',
 
   computed: { 
-    ...mapState("comics", {
-      comic: "detail"
-    }),
-
-    thumbnail() {
-      return this.comic.images[0] ? `${this.comic.images[0].path}.${this.comic.images[0].extension}` : `${this.comic.thumbnail.path}.${this.comic.thumbnail.extension}`
-    }
+    comicThumbnail() {
+      return this.comic ? this.comic.images[0] ? `${this.comic.images[0].path}.${this.comic.images[0].extension}` : `${this.comic.thumbnail.path}.${this.comic.thumbnail.extension}` : '';
+    },
   },
 
-  data: {
-    return() {
+  methods: {
+	characterThumbnail(character) {
+      return character ? `${character.thumbnail.path}.${character.thumbnail.extension}` : '';
+    },
+  },
 
+  data() {
+    return {
+      comic: {},
+      characters: []
     }
   },
 
   created() {
-    this.$store.dispatch('comics/FETCH_COMIC_DETAIL', this.$route.params.id)
+    $api.get(`/comics/${this.$route.params.id}`).then(({ data }) => {
+      this.comic = data.data.results[0];
+    }).then(() => {
+      	$api.get(`/comics/${this.$route.params.id}/characters`)
+      	.then(({ data }) => {  
+			this.characters = data.data.results;
+		})
+	})
   }
 }
 </script>
