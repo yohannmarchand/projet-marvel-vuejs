@@ -1,11 +1,18 @@
 <template>
-  <div class="about">
-    <h1>{{comic.title}}</h1>
+  <div class="about d-flex flex-column align-items-center">
+    <h1 class="text-center">{{comic.title}}</h1>
     <img
-      class="img-fluid img-thumbnail"
+      class="img-thumbnail img-fluid w-25"
       :src="thumbnail"
       :alt="comic.title"
     >
+    <small>Couverture de <b>{{comic.title}}</b></small>
+
+    <ul>
+      <li v-for="character in comic.characters" :key="character.name">
+        {{character.name}}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -13,7 +20,7 @@
 import { mapState } from 'vuex'
 
 export default {
-  name: 'Detail',
+  name: 'ComicsDetail',
 
   computed: { 
     ...mapState("comics", {
@@ -22,6 +29,12 @@ export default {
 
     thumbnail() {
       return this.comic.images[0] ? `${this.comic.images[0].path}.${this.comic.images[0].extension}` : `${this.comic.thumbnail.path}.${this.comic.thumbnail.extension}`
+    }
+  },
+
+  data: {
+    return() {
+
     }
   },
 

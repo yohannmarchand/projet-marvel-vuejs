@@ -26,7 +26,7 @@ import Catalog from '@/components/Catalog.vue'
 import SearchBar from '@/components/SearchBar.vue'
 
 export default {
-  name: 'Home',
+  name: 'ComicsHome',
 
   components: {
     Catalog,
