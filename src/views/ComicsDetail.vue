@@ -8,16 +8,22 @@
     >
     <small>Couverture de <b>{{comic.title}}</b></small>
 
-    <ul>
-      <li v-for="character in characters" :key="character.name">
-        {{character.name}}
-		<img
-      		class="img-thumbnail img-fluid w-25"
-      		:src="characterThumbnail(character)"
-      		:alt="character.name"
-    	>
-      </li>
-    </ul>
+    <h2 class="mt-5 mb-3">Caractères :</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-3" v-for="character in characters" :key="character.name">
+          <RouterLink :to="`/comic/${comic.id}`">
+		      <img
+        		class="img-thumbnail img-fluid"
+        		:src="characterThumbnail(character)"
+        		:alt="character.name"
+    	    >
+          {{character.name}}
+          </RouterLink>
+        </div>
+        
+      </div>
+    </div>
   </div>
 </template>
 
