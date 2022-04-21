@@ -1,5 +1,10 @@
 <template>
-  <div class="home">
+  <div
+      class="home"
+      v-infinite-scroll="loadMore"
+      :infinite-scroll-disabled="isFetchingData"
+      infinite-scroll-distance="200"
+  >
     <SearchBar />
     <Catalog />
   </div>
@@ -19,15 +24,22 @@ export default {
     SearchBar
   },
 
-  computed: {
-    ...mapState('comics', {
-      comics: 'comics'
-    })
+  data() {
+    return {
+      isFetchingData: false
+    }
   },
 
-  created() {
-    if(this.comics.length == 0) {
-      this.$store.dispatch('comics/FETCH_COMICS')
+  methods: {
+    loadMore() {
+      if (!this.isFetchingData) {
+        this.isFetchingData = true
+        this.$store.dispatch('comics/FETCH_NEXT_PAGE')
+
+        setTimeout(() => {
+          this.isFetchingData = false
+        }, 2000)
+      }
     }
   }
 }

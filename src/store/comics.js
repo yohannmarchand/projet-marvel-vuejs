@@ -19,7 +19,11 @@ export default {
 
   mutations: {
     ADD_COMICS(state, comics) {
-      comics.forEach(comic => state.comics.push(comic))
+      comics.forEach(comic => {
+        if (!state.comics.find(c => c.id === comic.id)) {
+          state.comics.push(comic)
+        }
+      })
     },
 
     SET_PAGINATION(state, pagination) {
@@ -34,14 +38,14 @@ export default {
   actions: {
     FETCH_COMICS() {
       $api.get('/comics').then(({ data }) => {
-        store.commit('comics/SET_PAGINATION', data.data.count / data.data.limit)
+        store.commit('comics/SET_PAGINATION', (data.data.count + data.data.offset) / data.data.limit)
         store.commit('comics/ADD_COMICS', data.data.results)
       })
     },
 
     FETCH_NEXT_PAGE({ state }) {
       $api.get(`/comics?offset=${state.pagination * state.limit}`).then(({ data }) => {
-        store.commit('comics/SET_PAGINATION', data.data.count / data.data.limit)
+        store.commit('comics/SET_PAGINATION', (data.data.count + data.data.offset) / data.data.limit)
         store.commit('comics/ADD_COMICS', data.data.results)
       })
     },
