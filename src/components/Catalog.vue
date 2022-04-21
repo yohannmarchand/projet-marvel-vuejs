@@ -5,7 +5,7 @@
         class="row"
     >
       <div
-        class="card col-3 m-2" v-for="comic in comics"
+        class="col-3 m-2" v-for="comic in comics"
         :key="comic.id"
       >
         <ComicCard :comic="comic" />

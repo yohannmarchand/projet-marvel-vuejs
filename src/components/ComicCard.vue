@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="card">
     <RouterLink :to="`/comic/${comic.id}`">
       <div>
         <img
