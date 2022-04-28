@@ -1,8 +1,15 @@
 <template>
   <div id="app" class="container">
-    <div id="nav">
-      <router-link to="/">Comics</router-link>
+    <NavBar/>
+    <div class="pt-5">
+      <router-view/>
     </div>
-    <router-view/>
   </div>
 </template>
+<script>
+import NavBar from "./components/NavBar";
+
+export default {
+  components: { NavBar }
+}
+</script>
