@@ -26,7 +26,15 @@ export default {
 
   methods: {
     setValue() {
-      this.$router.push({ query: { q: this.value} })
+      let query = {}
+
+       if (this.value) {
+         query = {
+           query: { q: this.value}
+         }
+       }
+
+      this.$router.push(query)
     }
   }
 }
