@@ -5,7 +5,7 @@
       infinite-scroll-distance="200"
   >
     <SearchBar />
-    <CharacterList :characters="search ? getComicsBySearch : characters" />
+    <CharacterList :characters="search ? getCharacterBySearch : characters" />
     <div v-if="isFetchingData" class="d-flex justify-content-center my-5">
       <div
           v-for="i in 3"
@@ -43,8 +43,8 @@ export default {
   },
 
   computed: {
-    getComicsBySearch() {
-      return this.characters.filter(comic => comic.title.toLowerCase().includes(this.search.toLowerCase()))
+    getCharacterBySearch() {
+      return this.characters.filter(character => character.name.toLowerCase().includes(this.search?.toLowerCase()))
     },
 
     search() {
