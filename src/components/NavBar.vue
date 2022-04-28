@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       links: [
-        { name: 'Comics', link: '/comics' },
+        { name: 'Comics', link: '/' },
         { name: 'Character', link: '/characters' },
       ],
       lastScroll: 0,
